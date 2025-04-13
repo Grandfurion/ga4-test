@@ -4,17 +4,54 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Тестова Google Аналітика</title>
-  <!-- Підключення GA4 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0K1CET4QTD"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-XXXXXXXXXX');
+    gtag('config', 'G-0K1CET4QTD');
   </script>
 </head>
-<body>
-  <h1>Привіт! Це твій тестовий сайт для лабораторної</h1>
-  <p>Google Аналітика вже на місці — заходь сюди сам і подивись трафік у GA4 😉</p>
+<body style="font-family:sans-serif; padding: 2rem;">
+  <h1>Привіт! Це тестова сторінка з Google Аналітикою</h1>
+  <p>Тут є кілька елементів для тестування подій аналітики.</p>
+
+  <hr>
+
+  <h2>Форма зворотного зв'язку</h2>
+  <form id="feedback-form">
+    <label for="name">Ім’я:</label><br>
+    <input type="text" id="name" name="name" /><br><br>
+    <button type="submit">Надіслати</button>
+  </form>
+
+  <hr>
+
+  <h2>Кнопки дій</h2>
+  <button onclick="gtag('event', 'learn_more_click', {event_category: 'Button', event_label: 'Learn More'})">
+    Дізнатись більше
+  </button>
+
+  <button onclick="gtag('event', 'contact_click', {event_category: 'Button', event_label: 'Contact Us'})" style="margin-left: 1rem;">
+    Надіслати запит
+  </button>
+
+  <script>
+    // Відстеження сабміту форми
+    document.getElementById("feedback-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const name = document.getElementById("name").value;
+
+      gtag('event', 'form_submit', {
+        event_category: 'Form',
+        event_label: 'Feedback Form',
+        value: name
+      });
+
+      alert("Форму надіслано! Подія записана в GA4.");
+    });
+  </script>
 </body>
 </html>
